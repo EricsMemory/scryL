@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#222222]">
+
+
+<!-- Add Book Form -->
+
+<main class="flex-col items-center justify-center min-h-screen">
+
+    <nav class="bg-[#222222] text-white p-4 top-0 left-0 w-full shadow-md z-50 border-b-[0.5px] border-gray-500">
+        <div class="container mx-auto flex justify-center items-center">
+
+            <!--Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                ☰
+            </button>
+
+            <!--Navbar Links (Desktop) -->
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="index.html" class="hover:text-gray-300">My Log</a></li>
+                <li><a href="main.html" class="hover:text-gray-300">Find Books</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+
+        <!--Mobile Menu (Hidden by Default) -->
+        <ul id="mobile-menu" class="hidden bg-gray-800 p-4 mt-2 md:hidden">
+            <li><a href="#" class="block py-2 hover:text-gray-300">Home</a></li>
+            <li><a href="index.html" class="hover:text-gray-300">My Log</a></li>
+            <li><a href="main.html" class="hover:text-gray-300">Find Books</a></li>
+            s
+            <li><a href="#" class="block py-2 hover:text-gray-300">About</a></li>
+            <li><a href="#" class="block py-2 hover:text-gray-300">Contact</a></li>
+        </ul>
+    </nav>
+    <!--Hero Section-->
+    <section id="hero" class="bg-[#222222] font-bold text-center p-10">
+        <h1 class="text-white text-4xl">📚 Reading Log</h1>
+        <p class="text-gray-300 text-sm my-2 ">Powered by Google Books API</p>
+        <p class="text-gray-300 text-xs my-2 ">Post Undergraduate Project - Eric Williams-Phillips</p>
+    </section>
+
+    <div id="search-bar" class="flex flex-row items-center justify-center w-full bg-[#222222] text-white border-t-[0.3px] border-b-[0.3px] border-gray-500">
+        <section class="flex-col items-start justify-start rounded-lg bg-gray-100 sticky top-0 h-fit">
+        </section>
+
+        <!-- Fetch Book by ISBN -->
+        <section id="search-by-isbn" class="flex-col justify-start rounded-lg p-4">
+            <input id="searchIsbn" class="p-1 rounded-lg text-white p-2 bg-gray-600 border-[1px] border-gray-200" type="text"
+                   placeholder="Enter ISBN">
+            <button class="bg-green-500 text-white px-4 py-2 my-2 mx-2 rounded-lg hover:bg-green-600"
+                    onclick="searchByISBN()">Search
+            </button>
+        </section>
+        <!-- Fetch Book by Name -->
+        <section id="search-by-title" class="justify-start rounded-lg p-4">
+            <input class="p-1 rounded-lg bg-gray-600 text-white p-2 border-[1px] border-gray-200" type="text" id="searchInput"
+                   placeholder="Search by Title">
+            <button class="bg-green-500 text-white px-4 py-2 my-2 mx-2 rounded-lg hover:bg-green-800"
+                    onclick="searchBooks()">Search
+            </button>
+        </section>
+    </div>
+
+    <!--Search Results-->
+    <div id="results" class="invisible flex flex-row p-3 h-full bg-[#222222] text-white">
+        <div id="container" class="flex flex-col items-center justify-center">
+            <img id="bookCover" class="w-full max-w-[200px] h-auto object-contain ml-6 p-0 mt-7 mb-6 shadow-md shadow-white" src="#" alt="Book Cover">
+            <img id="bookShelf" class="max-w-[400px] ml-6 mt-0" src="images/black-shelf.png" alt="Transparent image of a shelf">
+        </div>
+        <!--Book Description -->
+        <section id="bookInfo" class="flex-col p-8">
+            <h3 id="bookTitle" class="text-6xl my-2">Test</h3>
+            <!--Title and Links-->
+            <div id="mini-desc" class="flex flow-row items-center mx-2">
+                <p id="bookAuthor" class="text-s my-2">Test</p>
+                <button id="add-to-log"
+                        class="bg-green-500 text-white px-4 py-2 my-2 rounded-lg hover:bg-green-800 text-xs mx-2">Add to
+                    Reading Log
+                </button>
+                <a id="googleLink" href="" target="_blank">
+                    <button
+                            class="bg-blue-500 text-white px-4 py-2 my-2 rounded-lg hover:bg-blue-800 text-xs mx-2">Google
+                        Books - <span id="bookPrice"></span>
+                    </button>
+                </a>
+            </div>
+
+            <!--Summary and Metadata-->
+            <div id="meta-data" class="flex flex-row justify-center mt-4">
+                <div id="summary" class="w-3/4">
+                    <p id="bookSummary" class="border-[0.3px] border-gray-500 text-sm bg-[#222222] text-white p-8 rounded-lg m-2">Test</p>
+                </div>
+                <div id="detailWindow" class="flex flex-col items-start border-[0.3px] border-gray-500 leading-relaxed text-sm whitespace-pre-wrap bg-[#222222] text-white p-4 rounded-lg w-1/4 max-h-fit m-2">
+                    <p id="publishDate">#</p>
+                    <p id="publisherName">#</p>
+                    <p id="bookGenre"></p>
+                    <p id="pageCount"></p>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</main>
+</body>
+
+<script src="script.js"></script>
+</body>
+</html>

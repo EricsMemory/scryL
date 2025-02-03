@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-600">
+
+
+<!-- Add Book Form -->
+
+<main class="flex-col items-center justify-center min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-[#222222] text-white p-4 top-0 left-0 w-full shadow-md z-50">
+        <div class="container mx-auto flex justify-center items-center">
+
+            <!--Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                ☰
+            </button>
+
+            <!--Navbar Links (Desktop) -->
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="index.html" class="hover:text-gray-300">My Log</a></li>
+                <li><a href="main.html" class="hover:text-gray-300">Find Books</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+
+        <!--Mobile Menu (Hidden by Default) -->
+        <ul id="mobile-menu" class="hidden bg-gray-800 p-4 mt-2 md:hidden">
+            <li><a href="#" class="block py-2 hover:text-gray-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-300">My Log</a></li>
+            <li><a href="#" class="hover:text-gray-300">Find Books</a></li>s
+            <li><a href="#" class="block py-2 hover:text-gray-300">About</a></li>
+            <li><a href="#" class="block py-2 hover:text-gray-300">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!--Hero Section-->
+    <section id="hero" class="bg-gray-800 font-bold text-center p-10">
+        <h1 class="text-white text-4xl">📚 Reading Log</h1>
+        <p class="text-gray-300 text-sm my-2 ">Powered by Google Books API</p>
+        <p class="text-gray-300 text-xs my-2 ">Post Undergraduate Project - Eric Williams-Phillips</p>
+    </section>
+    <!-- ✅ JavaScript for Toggle Menu -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+
+    <div id="main-content" class="flex flex-row items-center justify-center w-full bg-gray-200">
+
+        <section class="flex-col justify-center w-full mx-auto h-screen overflow-y-scroll" >
+            <table id="booksTable" class="w-full border-collapse border border-gray-300 shadow-lg rounded-lg">
+                <thead>
+                <tr class="w-2/3 border-collapse border border-gray-300 shadow-lg rounded-lg">
+                    <th class="p-3 border border-gray-400">Title</th>
+                    <th class="p-3 border border-gray-400">Author</th>
+                    <th class="p-3 border border-gray-400">Genre</th>
+                    <th class="p-3 border border-gray-400">ISBN</th>
+                </tr>
+                </thead>
+                <tbody id="booksList" class="bg-white divide-y divide-gray-200"></tbody>
+            </table>
+        </section>
+    </div>
+    <!-- Display Books -->
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
