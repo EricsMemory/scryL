@@ -20,5 +20,6 @@ public interface BookRepository extends JpaRepository<Book, Long>{
      */
     //Custom PSQL queries
     List<Book> findByTitleContainingIgnoreCase(String title);
+
 }
 

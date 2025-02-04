@@ -57,6 +57,18 @@ public class BookController {
         }
     }
 
+    @GetMapping("/searchByTitle/{name}")
+    public ResponseEntity<?> searchBookByTitle(@PathVariable String name){
+        List<Book> books = googleBooksService.searchBookByTitle(name);
+
+        if (books !=null) {
+            System.out.println(books);
+            return ResponseEntity.ok(books);
+        } else {
+            return ResponseEntity.badRequest().body("Book not found.");
+        }
+    }
+
     /**
      * Retrieves book by unique id
      * @param id Primary/unique id to retrieve book by
