@@ -1,9 +1,12 @@
 package Eric.library.personal_library.controller;
 
+import Eric.library.personal_library.model.BestsellerBook;
 import Eric.library.personal_library.model.Book;
 import Eric.library.personal_library.repository.BookRepository;
 import Eric.library.personal_library.services.GoogleBooksService;
+import Eric.library.personal_library.services.NYTimesService;
 import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +23,13 @@ public class BookController {
     //Instance of book repo
     private final BookRepository bookRepository;
     private final GoogleBooksService googleBooksService;
+    private final NYTimesService nyTimesService;
 
-
-    public BookController(BookRepository bookRepository, GoogleBooksService googleBooksService) {
+    @Autowired
+    public BookController(BookRepository bookRepository, GoogleBooksService googleBooksService, NYTimesService nyTimesService) {
         this.bookRepository = bookRepository;
         this.googleBooksService = googleBooksService;
+        this.nyTimesService = nyTimesService;
     }
 
     /**
@@ -91,6 +96,11 @@ public class BookController {
         return bookRepository.findAll();
     }
 
+    @GetMapping("/nonfictionBestsellers")
+    public List<BestsellerBook> getNonfictionBestsellers() {
+        return nyTimesService.nonfictionBestsellerList();
+    }
+
     /**
      * Searches for books in the repository that contain the specified title.
      * This search is case-insensitive and matches partial titles.
@@ -101,6 +111,13 @@ public class BookController {
     public List<Book> searchBooks(@RequestParam String title) {
         return bookRepository.findByTitleContainingIgnoreCase(title);
     }
+
+    @GetMapping("/fictionBestsellers")
+    public List<BestsellerBook> getFictionBestsellers(){
+        return nyTimesService.fictionBestsellerList();
+    }
+
+
 
     /**
      * Deletes a book from the repository based on the specified id.
